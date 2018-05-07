@@ -1,0 +1,52 @@
+version: "3"
+services:
+  web:
+    # replace username/repo:tag with your name and image details
+    image: pytest:v1
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8555:8200"
+    networks:
+      - webnet
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8565:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+
+  persistent:
+    # replace username/repo:tag with your name and image details
+    image: persistent:v1
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - "/home/persistent/data:/app/data"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    ports:
+      - "8575:8300"
+    networks:
+      - webnet
+
+networks:
+  webnet:
