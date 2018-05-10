@@ -5,7 +5,7 @@ import socket
 @route('/dockertest')
 def dockertest():
 	hostname = socket.gethostname()
-	respuesta = "<p align=\"center\">Container Docker Python funcionando (segundo latest)</p> <p align=\"center\">Hostname = {0}</p>".format(hostname)
+	respuesta = "<p align=\"center\">Container Docker Python funcionando. Repository links by branch</p> <p align=\"center\">Hostname = {0}</p>".format(hostname)
 	return respuesta
 
 
