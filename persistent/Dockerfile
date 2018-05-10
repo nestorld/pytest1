@@ -1,4 +1,4 @@
-FROM pytest:v1
+FROM nestorld/pytest:release-PYTEST-v1.1.3
 
 WORKDIR /app
 
