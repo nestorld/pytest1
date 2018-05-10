@@ -1,5 +1,4 @@
-FROM nestorld/pytest:release-PYTEST-v1.1.3
-
+FROM nestorld/pytest:latest
 WORKDIR /app
 
 ADD . /app
